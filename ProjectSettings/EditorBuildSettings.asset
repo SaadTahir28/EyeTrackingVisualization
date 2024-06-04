@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/ViveSR/Scenes/Eye/EyeSample_v2.unity
+    guid: 95faae79a7fda8248a4f435507170572
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: aa5184be3203f3444833ea2683513915, type: 2}
     Unity.XR.PXR.Settings: {fileID: 11400000, guid: f90c0b1f783572d47a83629c12041f59, type: 2}

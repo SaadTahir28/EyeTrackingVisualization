@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnableEye: 1
   EnableEyeDataCallback: 1
-  EnableEyeVersion: 0
+  EnableEyeVersion: 1
