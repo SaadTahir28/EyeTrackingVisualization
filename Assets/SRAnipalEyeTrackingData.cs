@@ -8,7 +8,6 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
 {
     public float renderDistance = 9f;
     public GameObject leftEye, rightEye, bothEyes;
-    public TMP_Text leftEyeBlinking, rightEyeBlinking;
 
     private void Start()
     {

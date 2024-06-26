@@ -15,7 +15,7 @@ public class DataVisualization : MonoBehaviour
     public Color xLineColor = Color.red;
     public Color yLineColor = Color.blue;
     public Color followLineColor = Color.yellow;
-    public TMP_Text xAxisText, yAxisText;
+    public TMP_Text xAxisText, yAxisText, xData, yData;
 
     private Queue<Vector3> xDataPoints = new Queue<Vector3>();
     private Queue<Vector3> yDataPoints = new Queue<Vector3>();
@@ -37,6 +37,8 @@ public class DataVisualization : MonoBehaviour
 
         xAxisText.color = xLineColor;
         yAxisText.color = yLineColor;
+        xData.color = xLineColor;
+        yData.color = yLineColor;
     }
 
     void Update()
@@ -59,6 +61,9 @@ public class DataVisualization : MonoBehaviour
         //}
 
         var relativePosition = eyeTransform.localPosition;
+
+        xData.text = "X-Data: " + relativePosition.x;
+        yData.text = "Y-Data: " + relativePosition.y;
 
         // Create new points for both x and y graphs
         Vector3 newXPoint = new Vector3(0, relativePosition.x, currentZ);
