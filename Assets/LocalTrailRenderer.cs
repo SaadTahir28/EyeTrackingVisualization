@@ -96,4 +96,9 @@ public class LocalTrailRenderer : MonoBehaviour
 
         }
     }
+
+    public void ResetLine()
+    {
+        myLine.positionCount = 0;
+    }
 }
