@@ -9,6 +9,7 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
     public bool collectIndividualData;
     public float renderDistance = 9f;
     public GameObject leftEye, rightEye, bothEyes;
+    public LocalTrailRenderer localTrailRenderer;
 
     private void Start()
     {
@@ -37,6 +38,8 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
         // Obtaining the combined gaze direction for both eyes and storing it in gazeRay.
         if (SRanipal_Eye_v2.GetGazeRay(GazeIndex.COMBINE, out var gazeRay))
         {
+            bothEyes.SetActive(true);
+
             // Binocular
             var origin = gazeRay.origin; //eyePosition
             var dir = gazeRay.direction; //eyeRotation
@@ -44,6 +47,11 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
             var eyePosition = origin + depth * (dir / dir.z);
             var binocularVector = new Vector3(eyePosition.x, eyePosition.y, renderDistance);
             bothEyes.transform.localPosition = binocularVector;
+        } 
+        else
+        {
+            bothEyes.SetActive(false);
+            localTrailRenderer.ResetLine();
         }
     }
 
