@@ -5,7 +5,7 @@ using TMPro;
 public class DataVisualization : MonoBehaviour
 {
     public Transform visualizationCamera;
-    public Transform eyeTransform;
+    public Transform eyeTransform, leftEyeTransform, rightEyeTransform;
     public LineRenderer xLineRenderer;
     public LineRenderer yLineRenderer;
     public LineRenderer followLineRenderer;
@@ -16,6 +16,7 @@ public class DataVisualization : MonoBehaviour
     public Color yLineColor = Color.blue;
     public Color followLineColor = Color.yellow;
     public TMP_Text xAxisText, yAxisText, xData, yData;
+    public GameObject leftEyeBlink, rightEyeBlink;
 
     private Queue<Vector3> xDataPoints = new Queue<Vector3>();
     private Queue<Vector3> yDataPoints = new Queue<Vector3>();
@@ -81,6 +82,7 @@ public class DataVisualization : MonoBehaviour
         UpdateLineRenderer(followLineRenderer, followDataPoints);
 
         UpdateCamera();
+        ToggleBlinkState();
     }
 
     void AddDataPoint(Queue<Vector3> dataPoints, Vector3 newPoint)
@@ -101,5 +103,11 @@ public class DataVisualization : MonoBehaviour
     void UpdateCamera()
     {
         visualizationCamera.Translate(Vector3.right * Time.deltaTime * zSpeed);
+    }
+
+    void ToggleBlinkState()
+    {
+        leftEyeBlink.SetActive(leftEyeTransform.gameObject.activeSelf);
+        rightEyeBlink.SetActive(rightEyeTransform.gameObject.activeSelf);
     }
 }

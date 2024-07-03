@@ -6,9 +6,9 @@ using TMPro;
 
 public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class EyeGazeRaycast, inheriting from MonoBehaviour.
 {
+    public bool collectIndividualData;
     public float renderDistance = 9f;
     public GameObject leftEye, rightEye, bothEyes;
-    public LocalTrailRenderer eyeTrail;
 
     private void Start()
     {
@@ -23,11 +23,13 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
     {
         CombinedGazeData();
 
-        LeftEyeGazeData();
-
-        RightEyeGazeData();
-
         CheckEyeBlinks();
+
+        if (collectIndividualData)
+        {
+            LeftEyeGazeData();
+            RightEyeGazeData();
+        }
     }
 
     void CombinedGazeData()
@@ -78,23 +80,13 @@ public class SRAnipalEyeTrackingData : MonoBehaviour // Defining a new class Eye
         if (SRanipal_Eye_v2.GetEyeOpenness(EyeIndex.LEFT, out var leftEyeOpenness))
         {
             Debug.Log("leftEyeOpenness: " + leftEyeOpenness);
+            leftEye.SetActive(leftEyeOpenness == 1);
         }
 
         if (SRanipal_Eye_v2.GetEyeOpenness(EyeIndex.RIGHT, out var rightEyeOpenness))
         {
             Debug.Log("rightEyeOpenness: " + rightEyeOpenness);
-        }
-
-        // Both eyes are open
-        if (leftEyeOpenness == 1 && rightEyeOpenness == 1)
-        {
-            bothEyes.SetActive(true);
-        }
-        // Any one of them is close
-        else
-        {
-            bothEyes.SetActive(false);
-            eyeTrail.ResetLine();
+            rightEye.SetActive(rightEyeOpenness == 1);
         }
     }
 }
